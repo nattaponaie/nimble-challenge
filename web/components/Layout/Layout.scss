@@ -1,0 +1,28 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/color.scss';
+
+body {
+  font-size: 16px;
+}
+
+.header {
+  line-height: 32px;
+  margin-bottom: 1em;
+  border-bottom: 1px dotted $color-WG4;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.headerItem {
+  float: right;
+  padding-right: 1em;
+}
+
+.langEN {
+  font-family: $font-family-en;
+}
+
+.langTH {
+  font-family: $font-family-th;
+}

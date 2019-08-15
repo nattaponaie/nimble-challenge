@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  web:
+    build: ./web
+    image: nimble/web
+    command: yarn dev
+    volumes:
+      - "./web/__mocks__:/usr/src/app/__mocks__"
+      - "./web/__tests__:/usr/src/app/__tests__"
+      - "./web/components:/usr/src/app/components"
+      - "./web/contexts:/usr/src/app/contexts"
+      - "./web/pages:/usr/src/app/pages"
+      - "./web/static:/usr/src/app/static"
+      - "./web/styles:/usr/src/app/styles"
+      - "./web/utils:/usr/src/app/utils"
+    environment:
+      NODE_ENV: 'development'
+      PORT: 3000
+      ASSET_PREFIX: ''
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:9.6
+    volumes:
+      - "postgres-db:/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_USER: "api"
+      POSTGRES_PASSWORD: "api"
+      POSTGRES_DB: "db/development"
+  api:
+    build: ./api
+    image: nimble/api
+    command: >
+      bash -c "((bundle check >/dev/null 2>&1) || bundle install) && (
+        ($$(($$(ls -1 ./node_modules | wc -l) >= 10)) >/dev/null 2>&1) ||
+        yarn install
+      ) &&
+      rm -f tmp/pids/server.pid &&
+      rails s -b '0.0.0.0'"
+    volumes:
+      - "./api:/usr/src/app"
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+volumes:
+  postgres-db:

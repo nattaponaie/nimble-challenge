@@ -1,0 +1,12 @@
+$font-family-en: 'Lato';
+$font-family-th: 'SukhumvitTadmai';
+
+@font-face {
+  font-family: $font-family-en;
+  src: url('https://static.easysunday.com/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-family-th;
+  src: url('https://static.easysunday.com/fonts/SukhumvitTadmai_Tex.ttf') format('truetype');
+}
