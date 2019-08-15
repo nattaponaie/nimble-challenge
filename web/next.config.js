@@ -43,5 +43,10 @@ module.exports = {
     GATEWAY_PREFIX: process.env.GATEWAY_PREFIX || 'http://localhost',
     GATEWAY_RECAPTCHA_SITE_KEY: process.env.GATEWAY_RECAPTCHA_SITE_KEY,
     DEV_MODE: process.env.NODE_ENV === 'development',
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+    FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+    FIREBASE_PROJECT: process.env.FIREBASE_PROJECT,
+    AXIOS_TIMEOUT: process.env.AXIOS_TIMEOUT,
+    API_DOMAIN: process.env.API_DOMAIN,
   },
 };
