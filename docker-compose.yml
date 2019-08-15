@@ -11,13 +11,21 @@ services:
       - "./web/components:/usr/src/app/components"
       - "./web/contexts:/usr/src/app/contexts"
       - "./web/pages:/usr/src/app/pages"
+      - "./web/services:/usr/src/app/services"
       - "./web/static:/usr/src/app/static"
       - "./web/styles:/usr/src/app/styles"
       - "./web/utils:/usr/src/app/utils"
+      - "./web/config.js:/usr/src/app/config.js"
+      - "./web/i18n.js:/usr/src/app/i18n.js"
     environment:
       NODE_ENV: 'development'
       PORT: 3000
       ASSET_PREFIX: ''
+      FIREBASE_API_KEY: 'AIzaSyCV-lag3MM6jHZRYuKh3PcP5B63cPYeazE'
+      FIREBASE_AUTH_DOMAIN: 'nimble-challenge-cc890.firebaseapp.com'
+      FIREBASE_PROJECT: 'nimble-challenge-cc890'
+      AXIOS_TIMEOUT: 5000
+      API_DOMAIN: 'localhost:3001/api'
     ports:
       - "3000:3000"
   db:
