@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Router from 'next/router';
+import router from 'next/router';
 import {
   Button,
   Checkbox,
@@ -15,8 +15,9 @@ import {
   string,
 } from 'prop-types';
 
-import { withNamespaces } from '../../../i18n';
-import { login } from '../../../utils/auth';
+import { ASSET_PREFIX } from '/config';
+import { withNamespaces } from '/i18n';
+import { login, signInWithGoogle } from '/utils/auth';
 
 import style from './LoginForm.scss';
 
@@ -27,14 +28,15 @@ const LoginForm = ({ t, redirect, form }) => {
   const submitHandle = (event) => {
     event.preventDefault();
     validateFields(async (err, values) => {
-      try {
-        if (!err) {
-          await login(values);
-          Router.replace(`/${redirect}`);
-        }
-      } catch (e) {
-        setAlertVisible(true);
-      }
+      if (err) return;
+
+      login(values)
+        .then(() => {
+          router.replace(redirect || '/');
+        })
+        .catch(() => {
+          setAlertVisible(true);
+        });
     });
   };
 
@@ -77,6 +79,10 @@ const LoginForm = ({ t, redirect, form }) => {
         <Button type="primary" htmlType="submit" className={style.button}>{t('login')}</Button>
         {`${t('or')} `}
         <Link href={`/account/register${redirect ? `?r=${redirect}` : ''}`}><a>{t('registerNow')}</a></Link>
+        <Button onClick={signInWithGoogle} className={style.buttonGoogle}>
+          <img className={style.googleLogo} src={`${ASSET_PREFIX}/static/images/logo/google_logo.png`}/>
+          Sign in with Google
+        </Button>
       </Form.Item>
     </Form>
   );
