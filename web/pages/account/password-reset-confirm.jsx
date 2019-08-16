@@ -1,6 +1,6 @@
 import { shape, string } from 'prop-types';
 
-import AccountTemplate from './account';
+import AccountTemplate from './Account';
 import PasswordResetConfirmForm from '../../components/Auth/PasswordResetConfirmForm';
 
 const PasswordResetConfirmPage = ({ query: { t: token, r: redirect } }) => (

@@ -4,7 +4,7 @@ import {
 
 import RegisterForm from '/components/Auth/RegisterForm';
 
-import AccountTemplate from './account';
+import AccountTemplate from './Account';
 
 const RegisterPage = ({ query: { r: redirect } }) => (
   <AccountTemplate>

@@ -3,7 +3,7 @@ import { func } from 'prop-types';
 import { ASSET_PREFIX } from '/config';
 import { withNamespaces } from '/i18n';
 
-import style from './home.scss';
+import style from './Home.scss';
 
 const HomePage = ({ t }) => (
   <div className={style.homePanel}>

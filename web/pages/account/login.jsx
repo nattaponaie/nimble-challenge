@@ -4,7 +4,7 @@ import {
 
 import LoginForm from '/components/Auth/LoginForm';
 
-import AccountTemplate from './account';
+import AccountTemplate from './Account';
 
 const LoginPage = ({ query: { r: redirect } }) => (
   <AccountTemplate>

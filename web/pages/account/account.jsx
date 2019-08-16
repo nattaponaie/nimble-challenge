@@ -2,7 +2,7 @@ import { element } from 'prop-types';
 
 import { ASSET_PREFIX } from '/config';
 
-import style from './account.scss';
+import style from './Account.scss';
 
 const AccountTemplate = ({ children }) => (
   <div>

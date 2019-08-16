@@ -4,7 +4,7 @@ import {
 
 import PasswordResetForm from '/components/Auth/PasswordResetForm';
 
-import AccountTemplate from './account';
+import AccountTemplate from './Account';
 
 const PasswordResetPage = ({ query: { r: redirect } }) => (
   <AccountTemplate>
