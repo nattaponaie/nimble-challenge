@@ -4,7 +4,7 @@ services:
   web:
     build: ./web
     image: nimble/web
-    command: yarn dev
+    command: bash -c "yarn build && yarn dev"
     volumes:
       - "./web/__mocks__:/usr/src/app/__mocks__"
       - "./web/__tests__:/usr/src/app/__tests__"
@@ -25,7 +25,7 @@ services:
       FIREBASE_AUTH_DOMAIN: 'nimble-challenge-cc890.firebaseapp.com'
       FIREBASE_PROJECT: 'nimble-challenge-cc890'
       AXIOS_TIMEOUT: 5000
-      API_DOMAIN: 'localhost:3001/api'
+      API_DOMAIN: 'http://localhost:3001/api'
     ports:
       - "3000:3000"
   db:
@@ -38,7 +38,7 @@ services:
       PGDATA: "/var/lib/postgresql/data/pgdata"
       POSTGRES_USER: "api"
       POSTGRES_PASSWORD: "api"
-      POSTGRES_DB: "db/development"
+      POSTGRES_DB: "api"
   api:
     build: ./api
     image: nimble/api
@@ -53,6 +53,9 @@ services:
       - "./api:/usr/src/app"
     ports:
       - "3001:3000"
+    environment:
+      FIREBASE_AUD: nimble-challenge-cc890
+      FIREBASE_ISS: https://securetoken.google.com/nimble-challenge-cc890
     depends_on:
       - db
 volumes:
