@@ -1,0 +1,2 @@
+class KeywordData < ApplicationRecord
+end
