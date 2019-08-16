@@ -1,5 +1,3 @@
-const { parsed: environment } = require('dotenv').config();
-const { EnvironmentPlugin } = require('webpack');
 const withSass = require('@zeit/next-sass');
 const antdLessLoader = require('next-antd-aza-less');
 const lessToJS = require('less-vars-to-js');
@@ -26,10 +24,6 @@ module.exports = {
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: themeVariables, // make your antd custom effective
-    },
-    webpack: (nextConfig) => {
-      nextConfig.plugins.push(new EnvironmentPlugin(environment));
-      return nextConfig;
     },
     exportPathMap: () => ({
       '/': { page: '/index' },
