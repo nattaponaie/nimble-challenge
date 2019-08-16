@@ -5,10 +5,10 @@ import {
   Popover,
 } from 'antd';
 import Router from 'next/router';
-import { withNamespaces } from '../../../i18n';
-import { UserContext } from '../../../contexts/UserContext';
+import { withNamespaces } from '/i18n';
+import { UserContext } from '/contexts/UserContext';
 import { withAuth } from './withAuth';
-import { logout } from '../../../utils/auth';
+import { logout } from '/utils/auth';
 
 import style from './UserInfo.scss';
 
@@ -38,7 +38,7 @@ const UserInfo = (props) => {
       <Popover placement="bottom" title={t('popTitle')} content={content} trigger="hover">
         <div className={style.userinfo}>
           <Icon type="user" className={style.usericon} />
-          {state.username}
+          {state.email}
         </div>
       </Popover>
     </div>
