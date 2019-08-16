@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/development
+  database: api
   username: api
   password: api
   host: db
