@@ -52,7 +52,16 @@
     "simple-import-sort/sort": "error",
     "semi": "error",
     "space-infix-ops": "error",
-    "sort-imports": "off"
+    "sort-imports": "off",
+    "react/button-has-type": [0],
+    "linebreak-style": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "camelcase": "error"
   },
   "settings": {
     "import/resolver": {
