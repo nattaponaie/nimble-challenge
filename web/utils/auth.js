@@ -1,21 +1,64 @@
-import fetch from 'isomorphic-unfetch';
+import 'firebase/auth';
+import router from 'next/router';
+import firebase from 'firebase/app';
 
 import {
-  API_PREFIX, GATEWAY_PREFIX,
+  API_PREFIX,
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT,
 } from '/config';
 
 import { axiosInstance } from './axios';
 
-export const login = async ({ username, password }) => {
-  const resp = await axiosInstance.post(`${GATEWAY_PREFIX}/api/auth/v1.0/login`, { username, password });
-  if (resp.status !== 200) {
-    throw resp.data;
+/**
+ * Firebase auth
+ */
+
+export const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+export const firebaseInstance = () => {
+  const FIREBASE_CONFIG = {
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    projectId: FIREBASE_PROJECT,
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(FIREBASE_CONFIG);
   }
-  return resp.data;
+  return firebase.auth();
+};
+
+export const getCurrentUser = async () => {
+  try {
+    await firebaseInstance().currentUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const signInWithGoogle = async () => {
+  try {
+    await firebaseInstance().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    router.push(`/`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const login = async ({ username, password }) => {
+  try {
+    await firebaseInstance().signInWithEmailAndPassword(username, password);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const refresh = async () => {
-  const resp = await axiosInstance.post(`${GATEWAY_PREFIX}/api/auth/v1.0/refresh`);
+  const resp = await axiosInstance.post(`${API_PREFIX}/refresh`);
   if (resp.status !== 200) {
     throw resp.data;
   }
@@ -23,68 +66,31 @@ export const refresh = async () => {
 };
 
 export const logout = async () => {
-  const resp = await axiosInstance.post(`${GATEWAY_PREFIX}/api/auth/v1.0/logout`);
-  if (resp.status !== 200) {
-    throw resp.data;
+  try {
+    firebaseInstance().signOut();
+  } catch (error) {
+    throw error;
   }
-  return resp.data;
 };
 
 export const register = async ({
   email,
-  username,
   password,
-  recaptchaToken,
 }) => {
-  const res = await fetch(`${API_PREFIX}/register`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'recaptcha-token': recaptchaToken,
-    },
-    body: JSON.stringify({ email, username, password }),
-  });
-  const data = await res.json();
-  if (res.status !== 200) {
-    throw new Error(data.message);
+  try {
+    await firebaseInstance().createUserWithEmailAndPassword(email, password);
+  } catch (error) {
+    throw error;
   }
-  return data;
 };
 
-export const requestResetPassword = async ({
-  email,
-  redirect,
-  recaptchaToken,
-}) => {
-  const res = await fetch(`${GATEWAY_PREFIX}/api/auth/v1.0/manage/reset-password/request`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'recaptcha-token': recaptchaToken,
-    },
-    body: JSON.stringify({ email, redirect }),
-  });
-  const data = await res.json();
-  if (res.status !== 200) {
-    throw new Error(data.message);
-  }
-  return data;
-};
+const getUser = () => new Promise((resolve) => {
+  firebaseInstance().onAuthStateChanged(user => resolve(user));
+});
 
-export const requestResetPasswordConfirm = async ({
-  token,
-  newPassword,
-}) => {
-  const res = await fetch(`${GATEWAY_PREFIX}/api/auth/v1.0/manage/reset-password/confirm`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ token, newPassword }),
-  });
-  const data = await res.json();
-  if (res.status !== 200) {
-    throw new Error(data.message);
-  }
-  return data;
+export const getAccessToken = async () => {
+  const user = await getUser();
+  if (!user) return null;
+  const token = await user.getIdToken();
+  return token;
 };
