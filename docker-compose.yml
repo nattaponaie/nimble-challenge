@@ -48,15 +48,21 @@ services:
         yarn install
       ) &&
       rm -f tmp/pids/server.pid &&
-      rails s -b '0.0.0.0'"
+      bundle exec rails s -b '0.0.0.0'"
     volumes:
       - "./api:/usr/src/app"
+      - "api-bundle:/usr/local/bundle"
+      - "api-node-modules:/usr/src/app/node_modules"
     ports:
       - "3001:3000"
     environment:
       FIREBASE_AUD: nimble-challenge-cc890
       FIREBASE_ISS: https://securetoken.google.com/nimble-challenge-cc890
+      GOOGLE_CX: 012610938639456974169:qcicw6fgude
+      GOOGLE_API_KEY: AIzaSyCJm8FnOT7IhNLfgdiKRw7scKmJjX7FCR4
     depends_on:
       - db
 volumes:
   postgres-db:
+  api-bundle:
+  api-node-modules:
