@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-### authorization related
+# authorization related
 gem 'activesupport' # required by firebase auth
 gem 'httparty', '~> 0.14.0' # required by firebase auth, using as feed crawler, using for push notification through fcm
 gem 'jwt', '~> 1.5', '>= 1.5.6' # required by firebase auth
@@ -60,4 +60,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'active_model_serializers', '~> 0.10.6', require: true # for json_api implementation
+# for json_api implementation
+gem 'active_model_serializers', '~> 0.10.6', require: true
+
+# scheduler to run schedule task (e.g. cash redemption report generation)
+gem 'rufus-scheduler'
