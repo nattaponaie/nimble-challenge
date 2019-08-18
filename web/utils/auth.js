@@ -3,13 +3,10 @@ import router from 'next/router';
 import firebase from 'firebase/app';
 
 import {
-  API_PREFIX,
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
   FIREBASE_PROJECT,
 } from '/config';
-
-import { axiosInstance } from './axios';
 
 /**
  * Firebase auth
@@ -57,14 +54,6 @@ export const login = async ({ username, password }) => {
   }
 };
 
-export const refresh = async () => {
-  const resp = await axiosInstance.post(`${API_PREFIX}/refresh`);
-  if (resp.status !== 200) {
-    throw resp.data;
-  }
-  return resp.data;
-};
-
 export const logout = async () => {
   try {
     firebaseInstance().signOut();
@@ -84,7 +73,7 @@ export const register = async ({
   }
 };
 
-const getUser = () => new Promise((resolve) => {
+export const getUser = () => new Promise((resolve) => {
   firebaseInstance().onAuthStateChanged(user => resolve(user));
 });
 
