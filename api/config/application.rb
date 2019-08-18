@@ -11,6 +11,7 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.x.external_origin = 'http://localhost:3000'
+    config.x.timezone = 'Asia/Bangkok'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
