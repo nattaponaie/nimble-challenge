@@ -1,0 +1,6 @@
+{
+  "draggerTitle": "อัปโหลดไฟล์ Excel ที่มี Keywords",
+  "uploadText": "คลิก หรือ ลากไฟล์ในบริเวณนี้",
+  "uploadHint": "อัปโหลดได้เฉพาะไฟล์นามสกุล .csv เท่านั้น",
+  "uploadSuccess": "อัปโหลดสำเร็จ!"
+}

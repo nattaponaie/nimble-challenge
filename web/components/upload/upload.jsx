@@ -13,7 +13,7 @@ import style from './upload.scss';
 
 const { Dragger } = Upload;
 
-const useUpload = () => {
+const useUpload = (t) => {
   const [uploadConfig, setUploadConfig] = useState();
   useEffect(() => {
     let keywordsData = {};
@@ -32,9 +32,9 @@ const useUpload = () => {
           if(isEmpty(keywordsData)) return;
           try {
             await postKeywords({ keywordsData });
-            message.success('Upload file successfully!');
+            message.success(t('uploadSuccess'));
           } catch (error) {
-            message.error('Internal server error!');
+            message.error(error.message);
           }
         },
       });
@@ -46,17 +46,17 @@ const useUpload = () => {
 };
 
 const UploadPage = ({ t }) => {
-  const { uploadConfig } = useUpload();
+  const { uploadConfig } = useUpload(t);
   return (
     <div className={style.container}>
-      <h3>Upload a CSV file of keywords</h3>
+      <h3>{t('draggerTitle')}</h3>
       <Dragger {...uploadConfig}>
         <p className="ant-upload-drag-icon">
           <Icon type="inbox" />
         </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+        <p className="ant-upload-text">{t('uploadText')}</p>
         <p className="ant-upload-hint">
-          Support only .csv file type
+          {t('uploadHint')}
         </p>
       </Dragger>
     </div>
@@ -68,7 +68,7 @@ UploadPage.propTypes = {
 };
 
 UploadPage.getInitialProps = () => ({
-  namespacesRequired: ['page.upload'],
+  namespacesRequired: ['component.upload'],
 });
 
-export default withNamespaces('page.upload')(UploadPage);
+export default withNamespaces('component.upload')(UploadPage);
