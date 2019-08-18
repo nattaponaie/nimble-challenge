@@ -1,6 +1,28 @@
-.homePanel {
-  font-size: 20px;
+@import '../../styles/responsive';
+
+.container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+
+.imgLogo {
+  width: fit-content;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  margin-top: $padding;
+  margin-bottom: $padding;
+  width: 100%;
+  
+  tr {
+    &:hover {
+      color: white;
+    }
+  }
 }
