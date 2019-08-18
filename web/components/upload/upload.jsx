@@ -3,30 +3,15 @@ import {
   useState,
 } from 'react';
 import { func } from 'prop-types';
+import { isEmpty } from 'lodash';
 import { Upload, Icon, message } from 'antd';
-import Papa from 'papaparse';
-import { head } from 'lodash';
-
 import { withNamespaces } from '/i18n';
-import { postKeywords, getKeywords } from 'services/keywordsService';
+import { postKeywords } from '/services/keywordsService';
+import { parseCsvFile } from '/utils/papaParse';
 
-import style from './Upload.scss';
+import style from './upload.scss';
 
 const { Dragger } = Upload;
-
-const parseCsvFile = async (csv) => {
-  return new Promise((resolve, reject) => {
-    Papa.parse(csv, {
-      worker: true,
-      error: reject,
-      complete: (results) => {
-        const { data } = results;
-        const keywords = data.map((d) => head(d));
-        resolve(keywords);
-      }
-    });
-  });
-}
 
 const useUpload = () => {
   const [uploadConfig, setUploadConfig] = useState();
@@ -37,16 +22,19 @@ const useUpload = () => {
         accept: 'text/csv',
         showUploadList: false,
         async beforeUpload(file) {
-          keywordsData = await parseCsvFile(file);
-          console.log('keywordsData', keywordsData);
+          try {
+            keywordsData = await parseCsvFile(file);
+          } catch (error) {
+            message.error(error);
+          }
         },
         async customRequest() {
+          if(isEmpty(keywordsData)) return;
           try {
-            const response = await postKeywords({ keywordsData });
-            console.log('response', response);
-            
-          } catch {
-            message.error('Internal server error');
+            await postKeywords({ keywordsData });
+            message.success('Upload file successfully!');
+          } catch (error) {
+            message.error('Internal server error!');
           }
         },
       });

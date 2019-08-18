@@ -1,1 +1,1 @@
-export { default as RecaptchaSubmitButton } from './RecaptchaSubmitButton';
+export { default } from './recaptchaSubmitButton';

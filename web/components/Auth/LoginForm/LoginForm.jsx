@@ -2,7 +2,6 @@ import { useState } from 'react';
 import router from 'next/router';
 import {
   Button,
-  Checkbox,
   Form,
   Icon,
   Input,
@@ -19,7 +18,7 @@ import { ASSET_PREFIX } from '/config';
 import { withNamespaces } from '/i18n';
 import { login, signInWithGoogle } from '/utils/auth';
 
-import style from './LoginForm.scss';
+import style from './loginForm.scss';
 
 const LoginForm = ({ t, redirect, form }) => {
   const { getFieldDecorator, validateFields } = form;
@@ -48,6 +47,7 @@ const LoginForm = ({ t, redirect, form }) => {
           rules: [{ required: true, message: t('usernameFeedback') }],
         })(
           <Input
+            className={style.input}
             prefix={<Icon type="user" />}
             placeholder={t('username')}
             onChange={() => setAlertVisible(false)}
@@ -59,6 +59,7 @@ const LoginForm = ({ t, redirect, form }) => {
           rules: [{ required: true, message: t('passwordFeedback') }],
         })(
           <Input.Password
+            className={style.input}
             prefix={<Icon type="lock" />}
             type="password"
             placeholder={t('password')}
@@ -66,24 +67,16 @@ const LoginForm = ({ t, redirect, form }) => {
           />,
         )}
       </Form.Item>
-      <Form.Item>
-        {getFieldDecorator('remember', {
-          valuePropName: 'checked',
-          initialValue: true,
-        })(
-          <Checkbox>{t('rememberMe')}</Checkbox>,
-        )}
-        <Link href={`/account/password-reset${redirect ? `?r=${redirect}` : ''}`}>
-          <a className={style.forgot}>{t('forgotPassword')}</a>
-        </Link>
-        <Button type="primary" htmlType="submit" className={style.button}>{t('login')}</Button>
-        {`${t('or')} `}
+      <Button type="primary" htmlType="submit" className={style.button}>{t('login')}</Button>
+      <div className={style.centerBox}>{`${t('or')} `}</div>
+      <Button onClick={signInWithGoogle} className={style.buttonGoogle}>
+        <img className={style.googleLogo} src={`${ASSET_PREFIX}/static/images/logo/google_logo.png`}/>
+        {t('signInWithGoogle')}
+      </Button>
+      <div className={style.centerBox}>
+        {`${t('dontHaveAccount')} `}
         <Link href={`/account/register${redirect ? `?r=${redirect}` : ''}`}><a>{t('registerNow')}</a></Link>
-        <Button onClick={signInWithGoogle} className={style.buttonGoogle}>
-          <img className={style.googleLogo} src={`${ASSET_PREFIX}/static/images/logo/google_logo.png`}/>
-          Sign in with Google
-        </Button>
-      </Form.Item>
+      </div>
     </Form>
   );
 };

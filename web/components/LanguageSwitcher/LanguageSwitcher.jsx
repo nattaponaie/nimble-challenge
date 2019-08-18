@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import { string } from 'prop-types';
 
-import { i18n } from '../../i18n';
-import style from './LanguageSwitcher.scss';
+import { i18n } from '/i18n';
+import style from './languageSwitcher.scss';
 
 const languageSwitchHandle = event => i18n.changeLanguage(event.target.value);
 

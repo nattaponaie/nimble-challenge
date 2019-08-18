@@ -13,12 +13,12 @@ import {
   string,
 } from 'prop-types';
 
-import { GATEWAY_RECAPTCHA_SITE_KEY } from '../../../config';
-import { RecaptchaSubmitButton } from '../../RecaptchaSubmitButton';
-import { withNamespaces } from '../../../i18n';
-import { register } from '../../../utils/auth';
+import { GATEWAY_RECAPTCHA_SITE_KEY } from '/config';
+import RecaptchaSubmitButton from '/components/recaptchaSubmitButton';
+import { withNamespaces } from '/i18n';
+import { register } from '/utils/auth';
 
-import style from './RegisterForm.scss';
+import style from './registerForm.scss';
 
 const RegisterForm = ({ t, redirect, form }) => {
   const { getFieldDecorator, setFieldsValue, validateFields } = form;
@@ -69,6 +69,7 @@ const RegisterForm = ({ t, redirect, form }) => {
           }],
         })(
           <Input
+            className={style.input}
             ref={autoFocusRef}
             prefix={<Icon type="mail" />}
             placeholder={t('email')}
@@ -82,6 +83,7 @@ const RegisterForm = ({ t, redirect, form }) => {
       <Form.Item>
         {getFieldDecorator('username')(
           <Input
+            className={style.input}
             disabled
             prefix={<Icon type="user" />}
             placeholder={t('username')}
@@ -96,6 +98,7 @@ const RegisterForm = ({ t, redirect, form }) => {
           ],
         })(
           <Input.Password
+            className={style.input}
             prefix={<Icon type="lock" />}
             type="password"
             placeholder={t('password')}
@@ -122,6 +125,7 @@ const RegisterForm = ({ t, redirect, form }) => {
           }],
         })(
           <Input.Password
+            className={style.input}
             prefix={<Icon type="lock" />}
             type="password"
             placeholder={t('repassword')}

@@ -10,7 +10,7 @@ import { UserContext } from '/contexts/UserContext';
 import { withAuth } from './withAuth';
 import { logout } from '/utils/auth';
 
-import style from './UserInfo.scss';
+import style from './userInfo.scss';
 
 const UserInfo = (props) => {
   const { t } = props;

@@ -2,9 +2,9 @@ import {
  shape, string,
 } from 'prop-types';
 
-import LoginForm from '/components/Auth/LoginForm';
+import LoginForm from '/components/auth/loginForm';
 
-import AccountTemplate from './Account';
+import AccountTemplate from './account';
 
 const LoginPage = ({ query: { r: redirect } }) => (
   <AccountTemplate>

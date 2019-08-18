@@ -1,62 +1,8 @@
 @import '../../styles/fonts.scss';
-@import '../../styles/color.scss';
 @import '../../styles/responsive';
 
 body {
   font-size: 16px;
-}
-
-.header {
-  padding: 15px;
-  line-height: 32px;
-  margin-bottom: 1em;
-  border-bottom: 1px dotted $color-WG4;
-  width: 100%;
-  display: flex;
-
-  @include mobile {
-    flex-direction: column;
-  }
-}
-
-.headerLeft {
-  width: 50%;
-  display: flex;
-  justify-content: flex-start;
-
-  @include mobile {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-.menu {
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-
-  &Icon {
-    margin-right: 5%;
-  }
-
-  &:hover {
-    border-bottom: 2px solid $primary-color;
-  }
-}
-
-.headerRight {
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-
-  @include mobile {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-.headerItem {
-  padding-right: 1em;
 }
 
 .bodyContainer {
@@ -64,7 +10,7 @@ body {
   padding-right: 15%;
 
   @include mobile {
-    padding: 0;
+    padding: $padding;
   }
 }
 
