@@ -1,7 +1,8 @@
 import { get } from 'lodash';
+
 import {
-  postRequest,
   getRequest,
+  postRequest,
 } from '/utils/httpHelper';
 
 const RESOURCE = 'upload-file';
@@ -12,7 +13,7 @@ export const postKeywords = async ({ keywordsData }) => {
       path: RESOURCE,
       attributes: {
         keywords_data: keywordsData,
-      }
+      },
     });
     return keywords;
   } catch(error) {
@@ -31,7 +32,7 @@ export const getKeywords = async () => {
         totalAdwords: get(element, ['attributes', 'total-adwords']),
         totalLinks: get(element, ['attributes', 'total-links']),
         totalResults: get(element, ['attributes', 'total-results']),
-      }
+      };
     });
     return dataSource;
   } catch (error) {
