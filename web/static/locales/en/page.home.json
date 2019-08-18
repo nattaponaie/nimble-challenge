@@ -1,3 +1,7 @@
 {
-  "title": "Hello, World!"
+  "title": "Hello, World!",
+  "keyword": "Keyword",
+  "totalAdwords": "Total Adwords",
+  "totalLinks": "Total Links",
+  "totalResults": "Total Results"
 }

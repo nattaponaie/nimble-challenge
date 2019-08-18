@@ -8,6 +8,7 @@
   "forgotPassword": "Forgot password?",
   "or": "Or",
   "registerNow": "register now!",
-
-  "loginFailedMsg": "Incorrect username or password, please try again"
+  "dontHaveAccount": "Don't have an account?",
+  "loginFailedMsg": "Incorrect username or password, please try again",
+  "signInWithGoogle": "Sign in with Google"
 }

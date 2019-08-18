@@ -10,7 +10,7 @@ import Header from '/components/header';
 import { ASSET_PREFIX } from '/config';
 import { withNamespaces } from '/i18n';
 
-import style from './Layout.scss';
+import style from './layout.scss';
 
 const Layout = ({
   t,

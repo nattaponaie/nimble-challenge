@@ -9,10 +9,6 @@ import {
   API_DOMAIN,
 } from '/config';
 import { getAccessToken } from '/utils/auth';
-import {
-  formatJson,
-  formatResponse,
-} from '/utils/jsonResolver';
 
 const instance = axios.create({
   baseURL: API_DOMAIN,
@@ -48,9 +44,7 @@ const getRequest = async ({
       ...(await generateAuthToken()),
     },
   })
-    .then((response) => {
-      resolve(get(response, ['data']));
-    })
+    .then((response) => resolve(get(response, ['data'])))
     .catch(error => reject(new Error(`GET ${path} ${error.message}`)));
 });
 
@@ -76,36 +70,7 @@ const postRequest = async ({
     .catch(error => reject(new Error(`POST ${path} ${error.message}`)));
 });
 
-const patchRequest = async ({
-  version = 'v1', path, id, headers,
-  type, attributes, relationships, include, params,
-}) => new Promise(async (resolve, reject) => {
-  const url = createFullUrl({
-    version, path, id,
-  });
-  const body = {
-    data: {
-      type,
-      attributes,
-      relationships,
-    },
-  };
-  instance.patch(url, body, {
-    headers: {
-      ...headers,
-      ...(await generateAuthToken()),
-    },
-    params: {
-      ...params,
-      include,
-    },
-  })
-    .then(response => resolve(formatJson(formatResponse(response))))
-    .catch(error => reject(new Error(`PATCH ${path} ${error.message}`)));
-});
-
 export {
   getRequest,
   postRequest,
-  patchRequest,
 };

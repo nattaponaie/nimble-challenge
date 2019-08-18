@@ -1,9 +1,6 @@
-import { func } from 'prop-types';
-
 import UserInfo from '/components/auth/userInfo';
 import LanguageSwitcher from '/components/languageSwitcher';
 import Menu from '/components/menu';
-import { withNamespaces } from '/i18n';
 
 import style from './header.scss';
 
@@ -19,12 +16,8 @@ const Header = ({ allowAnonymous }) => (
   </div>
 );
 
-Header.propTypes = {
-  t: func.isRequired,
-};
-
 Header.getInitialProps = () => ({
   namespacesRequired: ['component.header'],
 });
 
-export default withNamespaces('component.header')(Header);
+export default Header;

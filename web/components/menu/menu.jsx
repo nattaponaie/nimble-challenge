@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { func } from 'prop-types';
 import { Icon } from 'antd';
 
@@ -5,10 +6,14 @@ import { withNamespaces } from '/i18n';
 
 import style from './menu.scss';
 
-const Menu = () => (
+const Menu = ({ t }) => (
   <div className={style.menu}>
-    <Icon className={style.menuIcon} type="home" />
-      Home
+    <Link href="/">
+      <>
+        <Icon className={style.menuIcon} type="home" />
+        {t('homeMenu')}
+      </>
+    </Link>
   </div>
 );
 
