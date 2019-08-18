@@ -3,7 +3,7 @@ import { message } from 'antd';
 import router from 'next/router';
 import { useContext, useEffect } from 'react';
 
-import { UserContext } from '/contexts/UserContext';
+import { UserContext } from '/contexts/userContext';
 import { getUser } from 'utils/auth';
 
 const withAuth = Component => (props) => {
