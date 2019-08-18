@@ -26,6 +26,7 @@ services:
       FIREBASE_PROJECT: 'nimble-challenge-cc890'
       AXIOS_TIMEOUT: 5000
       API_DOMAIN: 'http://localhost:3001/api'
+      GATEWAY_RECAPTCHA_SITE_KEY: '6LdIkqkUAAAAADSt6DPLCUIXd6IlX3p2P5OnzP6J'
     ports:
       - "3000:3000"
   db:
@@ -62,6 +63,18 @@ services:
       GOOGLE_API_KEY: AIzaSyCJm8FnOT7IhNLfgdiKRw7scKmJjX7FCR4
     depends_on:
       - db
+      - schedule-job
+  schedule-job:
+    build: ./api
+    command: ruby quickstart.rb
+    volumes:
+      - "./api:/usr/src/app"
+      - "api-bundle:/usr/local/bundle"
+      - "api-node-modules:/usr/src/app/node_modules"
+    environment:
+      GOOGLE_CX: 012610938639456974169:qcicw6fgude
+      GOOGLE_API_KEY: AIzaSyCJm8FnOT7IhNLfgdiKRw7scKmJjX7FCR4
+
 volumes:
   postgres-db:
   api-bundle:

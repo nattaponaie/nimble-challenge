@@ -1,11 +1,13 @@
+
 class Api::V1::KeywordFileController < ApplicationController
-  # skip_before_action :verify_authenticity_token
   include UserUidAuthenticable
   include ParamsDeserializer
   before_action :authenticate_uid!, only: [:create]
 
   def index
-    render json: { data: 'test' }
+    keywords = KeywordData.all.order(id: :asc)
+    render json: keywords,
+      each_serializer: External::KeywordFileSerializer
   end
 
   def show
@@ -24,7 +26,6 @@ class Api::V1::KeywordFileController < ApplicationController
         keyword_result.save
       end
     end
-
     render json: { statusMsg: 'success' }
   end
 
