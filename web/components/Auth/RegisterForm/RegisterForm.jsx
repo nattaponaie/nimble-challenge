@@ -1,24 +1,28 @@
-import { useState, useEffect, useRef } from 'react';
-import Router from 'next/router';
-import Link from 'next/link';
 import {
+  Alert,
   Form,
   Icon,
   Input,
-  Alert,
 } from 'antd';
+import Link from 'next/link';
+import Router from 'next/router';
 import {
   func,
   shape,
   string,
 } from 'prop-types';
+import {
+ useEffect, useRef,useState,
+} from 'react';
 
-import { GATEWAY_RECAPTCHA_SITE_KEY } from '/config';
 import RecaptchaSubmitButton from '/components/recaptchaSubmitButton';
+import { GATEWAY_RECAPTCHA_SITE_KEY } from '/config';
 import { withNamespaces } from '/i18n';
 import { register } from '/utils/auth';
 
 import style from './registerForm.scss';
+
+const passwordPattern = /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,}$/;
 
 const RegisterForm = ({ t, redirect, form }) => {
   const { getFieldDecorator, setFieldsValue, validateFields } = form;
@@ -94,7 +98,7 @@ const RegisterForm = ({ t, redirect, form }) => {
         {getFieldDecorator('password', {
           rules: [
             { required: true, message: t('passwordFeedback') },
-            { pattern: /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,}$/, message: t('passwordPolicyFeedback') },
+            { pattern: passwordPattern, message: t('passwordPolicyFeedback') },
           ],
         })(
           <Input.Password

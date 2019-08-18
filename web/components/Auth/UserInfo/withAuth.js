@@ -1,10 +1,14 @@
-import { get, isNil } from 'lodash';
 import { message } from 'antd';
+import {
+ get, isNil,
+} from 'lodash';
 import router from 'next/router';
-import { useContext, useEffect } from 'react';
+import {
+ useContext, useEffect,
+} from 'react';
+import { getUser } from 'utils/auth';
 
 import { UserContext } from '/contexts/userContext';
-import { getUser } from 'utils/auth';
 
 const withAuth = Component => (props) => {
   const { dispatch } = useContext(UserContext);
@@ -13,8 +17,9 @@ const withAuth = Component => (props) => {
       try {
         const user = await getUser();
         if(isNil(user)) {
-          if (!router.asPath.includes('/account/login')) {
-            router.push(`/account/login?r=${router.asPath}`);
+          const { asPath } = router;
+          if (!asPath.includes('/account/login')) {
+            router.push(`/account/login?r=${asPath}`);
           }
         }
         else {

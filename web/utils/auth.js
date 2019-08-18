@@ -1,6 +1,7 @@
 import 'firebase/auth';
-import router from 'next/router';
+
 import firebase from 'firebase/app';
+import router from 'next/router';
 
 import {
   FIREBASE_API_KEY,
@@ -40,7 +41,7 @@ export const getCurrentUser = async () => {
 export const signInWithGoogle = async () => {
   try {
     await firebaseInstance().signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    router.push(`/`);
+    router.push('/');
   } catch (error) {
     throw error;
   }

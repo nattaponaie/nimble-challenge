@@ -33,10 +33,7 @@ module.exports = {
   })),
   publicRuntimeConfig: { // will be available on both server and client
     ASSET_PREFIX: process.env.ASSET_PREFIX || '',
-    API_PREFIX: process.env.API_PREFIX || 'http://localhost:8080/api',
-    GATEWAY_PREFIX: process.env.GATEWAY_PREFIX || 'http://localhost',
     GATEWAY_RECAPTCHA_SITE_KEY: process.env.GATEWAY_RECAPTCHA_SITE_KEY,
-    DEV_MODE: process.env.NODE_ENV === 'development',
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
     FIREBASE_PROJECT: process.env.FIREBASE_PROJECT,

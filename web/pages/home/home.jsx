@@ -1,11 +1,16 @@
-import { func } from 'prop-types';
-import { Table, message } from 'antd';
+import {
+ message,Table,
+} from 'antd';
 import { isNil } from 'lodash';
-import { useState, useEffect } from 'react';
-import { withNamespaces } from '/i18n';
+import { func } from 'prop-types';
+import {
+ useEffect,useState,
+} from 'react';
+
 import Upload from '/components/upload';
-import { getKeywords } from '/services/keywordsService';
 import { ASSET_PREFIX } from '/config';
+import { withNamespaces } from '/i18n';
+import { getKeywords } from '/services/keywordsService';
 
 import style from './home.scss';
 
@@ -34,7 +39,7 @@ const paginationConfig = {
 
 const useKeyword = () => {
   const [keywordData, setKeywordData] = useState([]);
-  
+
   useEffect(() => {
     (async () => {
       try {
@@ -56,18 +61,18 @@ const HomePage = ({ t }) => {
   return (
     <div className={style.container}>
       <div className={style.imgContainer}>
-          <img className={style.imgLogo} src={`${ASSET_PREFIX}/static/favicon.png`} alt="logo" />
+        <img className={style.imgLogo} src={`${ASSET_PREFIX}/static/favicon.png`} alt="logo" />
       </div>
       <Upload />
-      <Table 
-          className={style.table} 
-          columns={columns(t)} 
-          dataSource={keywordData} 
-          pagination={paginationConfig}
-          loading={isNil(keywordData)}
-        />
+      <Table
+        className={style.table}
+        columns={columns(t)}
+        dataSource={keywordData}
+        pagination={paginationConfig}
+        loading={isNil(keywordData)}
+      />
     </div>
-  )
+  );
 };
 
 HomePage.propTypes = {

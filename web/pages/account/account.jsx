@@ -5,12 +5,12 @@ import { ASSET_PREFIX } from '/config';
 import style from './account.scss';
 
 const AccountTemplate = ({ children }) => (
-  <div>
+  <>
     <div className={style.logo}>
       <img src={`${ASSET_PREFIX}/static/favicon.png`} alt="logo" />
     </div>
     {children}
-  </div>
+  </>
 );
 
 AccountTemplate.propTypes = {

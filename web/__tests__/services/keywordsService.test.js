@@ -1,10 +1,14 @@
 import { head } from 'lodash';
+
+import {
+   mockCsvData,
+mockGetResponse,
+  mockPostResponse,
+} from '/__mocks__/services/keywordsServiceMock';
+import {
+ getKeywords, postKeywords,
+} from '/services/keywordsService';
 import * as httpHelper from '/utils/httpHelper';
-import { getKeywords, postKeywords } from '/services/keywordsService';
-import { mockGetResponse, 
-  mockPostResponse, 
-  mockCsvData 
-} from '../../__mocks__/services/keywordsServiceMock';
 
 describe('getKeywords', () => {
   beforeEach(() => {

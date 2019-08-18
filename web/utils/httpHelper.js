@@ -1,12 +1,12 @@
 import axios from 'axios';
 import {
-  isNil,
   get,
+  isNil,
 } from 'lodash';
 
 import {
-  AXIOS_TIMEOUT,
   API_DOMAIN,
+  AXIOS_TIMEOUT,
 } from '/config';
 import { getAccessToken } from '/utils/auth';
 
