@@ -2,9 +2,9 @@ import {
  shape, string,
 } from 'prop-types';
 
-import RegisterForm from '/components/Auth/RegisterForm';
+import RegisterForm from '/components/auth/registerForm';
 
-import AccountTemplate from './Account';
+import AccountTemplate from './account';
 
 const RegisterPage = ({ query: { r: redirect } }) => (
   <AccountTemplate>

@@ -6,11 +6,11 @@ import {
 } from 'antd';
 import Router from 'next/router';
 import { withNamespaces } from '/i18n';
-import { UserContext } from '/contexts/UserContext';
+import { UserContext } from '/contexts/userContext';
 import { withAuth } from './withAuth';
 import { logout } from '/utils/auth';
 
-import style from './UserInfo.scss';
+import style from './userInfo.scss';
 
 const UserInfo = (props) => {
   const { t } = props;

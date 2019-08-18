@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app';
 
 import Layout from '/components/Layout/Layout';
-import { UserContextProvider } from '/contexts/UserContext';
+import { UserContextProvider } from '/contexts/userContext';
 import { appWithTranslation } from '/i18n';
 
 class MyApp extends App {
