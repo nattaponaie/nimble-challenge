@@ -1,6 +1,6 @@
 import App, { Container } from 'next/app';
 
-import Layout from '/components/Layout/Layout';
+import Layout from '/components/layout';
 import { UserContextProvider } from '/contexts/userContext';
 import { appWithTranslation } from '/i18n';
 
