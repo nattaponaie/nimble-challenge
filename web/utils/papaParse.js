@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 
 const MAX_KEYWORDS = 100;
 
-const parseCsvFile = async (csv) => {
+export const parseCsvFile = async (csv) => {
   return new Promise((resolve, reject) => {
     Papa.parse(csv, {
       worker: true,
@@ -16,8 +16,4 @@ const parseCsvFile = async (csv) => {
       },
     });
   });
-};
-
-export {
-  parseCsvFile,
 };

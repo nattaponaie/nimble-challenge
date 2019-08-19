@@ -1,22 +1,24 @@
-import { useState } from 'react';
-import router from 'next/router';
 import {
+  Alert,
   Button,
   Form,
   Icon,
   Input,
-  Alert,
 } from 'antd';
 import Link from 'next/link';
+import router from 'next/router';
 import {
   func,
   shape,
   string,
 } from 'prop-types';
+import { useState } from 'react';
 
 import { ASSET_PREFIX } from '/config';
 import { withNamespaces } from '/i18n';
-import { login, signInWithGoogle } from '/utils/auth';
+import {
+  login, signInWithGoogle,
+} from '/utils/auth';
 
 import style from './loginForm.scss';
 
@@ -70,7 +72,7 @@ const LoginForm = ({ t, redirect, form }) => {
       <Button type="primary" htmlType="submit" className={style.button}>{t('login')}</Button>
       <div className={style.centerBox}>{`${t('or')} `}</div>
       <Button onClick={signInWithGoogle} className={style.buttonGoogle}>
-        <img className={style.googleLogo} src={`${ASSET_PREFIX}/static/images/logo/google_logo.png`}/>
+        <img className={style.googleLogo} src={`${ASSET_PREFIX}/static/images/logo/google_logo.png`} alt="googleLogo" />
         {t('signInWithGoogle')}
       </Button>
       <div className={style.centerBox}>

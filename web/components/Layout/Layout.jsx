@@ -22,7 +22,7 @@ const Layout = ({
     <Head>
       <link rel="shortcut icon" href={`${ASSET_PREFIX}/static/favicon.png`} />
       <title>{t('title')}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86"/>
+      <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86" />
     </Head>
     <header>
       <Header allowAnonymous={allowAnonymous} />
