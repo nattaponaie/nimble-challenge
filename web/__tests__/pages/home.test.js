@@ -5,6 +5,7 @@ import {
 import Adapter from 'enzyme-adapter-react-16';
 import { head } from 'lodash';
 
+import { mockKeywords } from '/__mocks__/pages/homeMock';
 import UploadComponent from '/components/upload';
 import HomePage from '/pages/home';
 import {
@@ -13,21 +14,6 @@ import {
 } from '/pages/home/homeHooks';
 
 configure({ adapter: new Adapter() });
-
-const mockKeywords = [
-  {
-    keyword: 'Google',
-    totalAdwords: 2,
-    totalLinks: 10,
-    totalResults: 1200000,
-  },
-  {
-    keyword: 'Grab',
-    totalAdwords: 1,
-    totalLinks: 6,
-    totalResults: 200000,
-  },
-];
 
 jest.mock('/i18n', () => ({
   withNamespaces: () => Component => {
