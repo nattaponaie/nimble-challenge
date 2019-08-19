@@ -36,8 +36,7 @@ Web:
   
 API:
   - When .csv file is uploaded to API it will be stored to database but not be searched immediately.
-  - There is a scheduler-job that running every 1 minute for checking keyword that is not searched yet. In addition, a keyword will be searched by using Nokogiri library.
-  - Only total results will be searched by Google API. This is because I cannot find a way to get total results from specific keyword.
+  - There is a scheduler-job that running every 1 minute for checking keyword that is not searched yet. In addition, a keyword will be scrapped by using Nokogiri library.
   
 ## Features
 
@@ -47,4 +46,10 @@ This project make it easy to get:
   - Total Results
   - HTML Code
   
-from search query
+from searching a keyword
+
+## NOTE
+
+- Ideally, this project will use separate Firebase key from development, staging, production, so it's ok to keep Firebase development to docker-compose file.
+- Ideally, GOOGLE_API_KEY, must be encrypted with encryption tool.
+- Only total results will be searched by using Google API. This is because I cannot find a way to get total results from Google.
