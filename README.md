@@ -29,12 +29,14 @@ docker-compose build scheduler-job
 ## How it works
 
 Web:
-  - Go to home page then upload .csv file that contain keywords (1-100 keywords).
+  - This web application must be authenticated before using its functionality. 
+  - User must authenticate with their G-mail account or register a new account directly through the site.
+  - On Home page there is a upload section that can upload .csv file that contain keywords (1-100 keywords).
   - All keywords data will be displayed on the page.
   
 API:
-  - When .csv file is uploaded to API it will be stored to database.
-  - There is a scheduler-job that checking every 1 minute for a key that is not searched yet. In addition, a keyword will be searched by using Nokogiri.
+  - When .csv file is uploaded to API it will be stored to database but not be searched immediately.
+  - There is a scheduler-job that running every 1 minute for checking keyword that is not searched yet. In addition, a keyword will be searched by using Nokogiri library.
   - Only total results will be searched by Google API. This is because I cannot find a way to get total results from specific keyword.
   
 ## Features
@@ -44,3 +46,5 @@ This project make it easy to get:
   - Total Links
   - Total Results
   - HTML Code
+  
+from search query
