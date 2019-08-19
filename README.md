@@ -48,7 +48,7 @@ This project make it easy to get:
   
 from searching a keyword
 
-## NOTE
+## Note
 
 - Ideally, this project will use separate Firebase key from development, staging, production, so it's ok to keep Firebase development to docker-compose file.
 - Ideally, GOOGLE_API_KEY, must be encrypted with encryption tool.
