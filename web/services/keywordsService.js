@@ -9,13 +9,13 @@ const RESOURCE = 'upload-file';
 
 export const postKeywords = async ({ keywordsData }) => {
   try {
-    const keywords = await postRequest({
+    const response = await postRequest({
       path: RESOURCE,
       attributes: {
         keywords_data: keywordsData,
       },
     });
-    return keywords;
+    return response;
   } catch(error) {
     throw error;
   }
