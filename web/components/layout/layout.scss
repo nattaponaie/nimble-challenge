@@ -1,0 +1,23 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/responsive';
+
+body {
+  font-size: 16px;
+}
+
+.bodyContainer {
+  padding-left: 15%;
+  padding-right: 15%;
+
+  @include mobile {
+    padding: $padding;
+  }
+}
+
+.langEN {
+  font-family: $font-family-en;
+}
+
+.langTH {
+  font-family: $font-family-th;
+}

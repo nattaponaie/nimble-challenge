@@ -1,0 +1,42 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/color.scss';
+@import '../../styles/responsive';
+
+.header {
+  padding: 15px;
+  line-height: 32px;
+  margin-bottom: 1em;
+  border-bottom: 1px dotted $color-WG4;
+  width: 100%;
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.headerLeft {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.headerRight {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.headerItem {
+  padding-right: 1em;
+}
