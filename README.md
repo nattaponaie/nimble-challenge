@@ -52,4 +52,4 @@ from searching a keyword
 
 - Ideally, this project will use separate Firebase key from development, staging, production, so it's ok to keep Firebase development to docker-compose file.
 - Ideally, GOOGLE_API_KEY, must be encrypted with encryption tool.
-- Only total results will be searched by using Google API. This is because I cannot find a way to get total results from Google.
+- Only total results will be searched by using Google API. This is because I cannot find a way to get total results from Google. `So, it can only search 100 query a day`
