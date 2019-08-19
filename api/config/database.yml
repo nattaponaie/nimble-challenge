@@ -5,9 +5,9 @@ default: &default
 
 development:
   <<: *default
-  database: api
-  username: api
-  password: api
+  database: <%= ENV['DATABASE_DB'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: db
 
 # Warning: The database defined as "test" will be erased and
