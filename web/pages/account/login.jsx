@@ -1,5 +1,5 @@
 import {
- shape, string,
+  shape, string,
 } from 'prop-types';
 
 import LoginForm from '/components/auth/loginForm';

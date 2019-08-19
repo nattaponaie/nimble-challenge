@@ -1,6 +1,6 @@
 import { element } from 'prop-types';
 import {
- createContext, useReducer,
+  createContext, useReducer,
 } from 'react';
 
 const initialState = {
@@ -9,20 +9,20 @@ const initialState = {
   email: undefined,
 };
 
-const UserContext = createContext(initialState);
+export const UserContext = createContext(initialState);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'info':
-      return { ...action.userinfo };
-    case 'logout':
-      return initialState;
-    default:
-      return state;
+  case 'info':
+    return { ...action.userinfo };
+  case 'logout':
+    return initialState;
+  default:
+    return state;
   }
 };
 
-const UserContextProvider = ({ children }) => {
+export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <UserContext.Provider value={{ state, dispatch }}>
@@ -34,5 +34,3 @@ const UserContextProvider = ({ children }) => {
 UserContextProvider.propTypes = {
   children: element.isRequired,
 };
-
-export { UserContext, UserContextProvider };

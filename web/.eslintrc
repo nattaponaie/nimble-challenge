@@ -61,7 +61,8 @@
         "devDependencies": true
       }
     ],
-    "camelcase": "error"
+    "camelcase": "error",
+    "indent": ["error", 2]
   },
   "settings": {
     "import/resolver": {

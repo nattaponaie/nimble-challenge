@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import Router from 'next/router';
 import {
- func, string,
+  func, string,
 } from 'prop-types';
 import { useContext } from 'react';
 

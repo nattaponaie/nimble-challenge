@@ -1,4 +1,4 @@
-const mockGetResponse = {
+export const mockGetResponse = {
   data: [
     {
       id: 1,
@@ -25,11 +25,5 @@ const mockGetResponse = {
   ],
 };
 
-const mockCsvData = ['Keyword', 'Food', 'Taxi', 'Grab', 'Google'];
-const mockPostResponse = { 'statusMsg': 'success' };
-
-export {
-  mockGetResponse,
-  mockCsvData,
-  mockPostResponse,
-};
+export const mockCsvData = ['Keyword', 'Food', 'Taxi', 'Grab', 'Google'];
+export const mockPostResponse = { 'statusMsg': 'success' };

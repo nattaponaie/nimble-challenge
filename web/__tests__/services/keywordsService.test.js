@@ -1,12 +1,12 @@
 import { head } from 'lodash';
 
 import {
-   mockCsvData,
-mockGetResponse,
+  mockCsvData,
+  mockGetResponse,
   mockPostResponse,
 } from '/__mocks__/services/keywordsServiceMock';
 import {
- getKeywords, postKeywords,
+  getKeywords, postKeywords,
 } from '/services/keywordsService';
 import * as httpHelper from '/utils/httpHelper';
 

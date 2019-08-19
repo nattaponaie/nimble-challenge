@@ -1,16 +1,16 @@
 import { message } from 'antd';
 import {
- get, isNil,
+  get, isNil,
 } from 'lodash';
 import router from 'next/router';
 import {
- useContext, useEffect,
+  useContext, useEffect,
 } from 'react';
 import { getUser } from 'utils/auth';
 
 import { UserContext } from '/contexts/userContext';
 
-const withAuth = Component => (props) => {
+export const withAuth = Component => (props) => {
   const { dispatch } = useContext(UserContext);
   useEffect(() => {
     (async () => {
@@ -38,8 +38,4 @@ const withAuth = Component => (props) => {
   }, []);
 
   return <Component {...props} />;
-};
-
-export {
-  withAuth,
 };

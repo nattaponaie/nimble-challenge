@@ -1,6 +1,6 @@
+import { Icon } from 'antd';
 import Link from 'next/link';
 import { func } from 'prop-types';
-import { Icon } from 'antd';
 
 import { withNamespaces } from '/i18n';
 

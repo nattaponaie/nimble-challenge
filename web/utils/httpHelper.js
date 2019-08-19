@@ -1,8 +1,5 @@
 import axios from 'axios';
-import {
-  get,
-  isNil,
-} from 'lodash';
+import { get } from 'lodash';
 
 import {
   API_DOMAIN,
@@ -10,37 +7,33 @@ import {
 } from '/config';
 import { getAccessToken } from '/utils/auth';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: API_DOMAIN,
   timeout: AXIOS_TIMEOUT,
 });
 
-const generateAuthToken = async () => {
+export const generateAuthToken = async () => {
   const accessToken = await getAccessToken();
   return {
     Authorization: `Bearer ${accessToken}`,
   };
 };
 
-const createFullUrl = ({
-  version, path, id,
+export const createUrlPath = ({
+  version, path,
 }) => {
-  let url = `${version}/${path}`;
-  url += !isNil(id) ? `/${id}` : '';
-
+  const url = `${version}/${path}`;
   return url;
 };
 
-const getRequest = async ({
-  version = 'v1', path, headers,
-  id, queryString,
+export const getRequest = async ({
+  version = 'v1', path,
 }) => new Promise(async (resolve, reject) => {
-  const url = createFullUrl({
-    version, path, id, queryString,
+  const url = createUrlPath({
+    version, path,
   });
   instance.get(url, {
     headers: {
-      ...headers,
       ...(await generateAuthToken()),
     },
   })
@@ -48,11 +41,11 @@ const getRequest = async ({
     .catch(error => reject(new Error(`GET ${path} ${error.message}`)));
 });
 
-const postRequest = async ({
+export const postRequest = async ({
   version = 'v1', path, headers,
   type, attributes, queryString,
 }) => new Promise(async (resolve, reject) => {
-  const url = createFullUrl({ version, path, queryString });
+  const url = createUrlPath({ version, path, queryString });
   const body = {
     data: {
       type,
@@ -69,8 +62,3 @@ const postRequest = async ({
     .then(response => resolve(get(response, ['data'])))
     .catch(error => reject(new Error(`POST ${path} ${error.message}`)));
 });
-
-export {
-  getRequest,
-  postRequest,
-};
