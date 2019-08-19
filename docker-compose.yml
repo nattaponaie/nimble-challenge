@@ -63,8 +63,8 @@ services:
       GOOGLE_API_KEY: AIzaSyCJm8FnOT7IhNLfgdiKRw7scKmJjX7FCR4
     depends_on:
       - db
-      - schedule-job
-  schedule-job:
+      - scheduler-job
+  scheduler-job:
     build: ./api
     command: ruby quickstart.rb
     volumes:
