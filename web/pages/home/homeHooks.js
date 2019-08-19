@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import {
   useEffect,
   useState,
@@ -43,12 +42,8 @@ export const useKeyword = ({ t }) => {
 
   useEffect(() => {
     (async () => {
-      try {
-        const response = await getAllKeywords();
-        setKeywordData(response);
-      } catch (error) {
-        message.error(error.message);
-      }
+      const response = await getAllKeywords();
+      setKeywordData(response);
     })();
   }, []);
 
