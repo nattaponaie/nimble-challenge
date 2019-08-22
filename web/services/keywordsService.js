@@ -5,9 +5,9 @@ import {
   postRequest,
 } from '/utils/httpHelper';
 
-const RESOURCE = 'upload-file';
+const RESOURCE = 'keywords';
 
-export const postKeywords = async ({ parsedKeywordsData: keywordsData }) => {
+export const postKeywords = async ({ keywordsData }) => {
   try {
     const response = await postRequest({
       path: RESOURCE,
@@ -23,17 +23,23 @@ export const postKeywords = async ({ parsedKeywordsData: keywordsData }) => {
 
 export const getKeywords = async () => {
   try {
-    const response = await getRequest({ path: RESOURCE });
-    const { data } = response;
-    const dataSource = data.map((element) => {
+    const response = await getRequest({
+      path: RESOURCE,
+      queryString: 'include=report',
+    });
+    const { keyword, report } = response;
+    const dataSource = keyword.map((element) => {
+      const id = get(element, 'id');
+      const reportData = report.find(report => report.id === id);
       return {
-        key: get(element, 'id'),
-        keyword: get(element, ['attributes', 'keyword']),
-        totalAdwords: get(element, ['attributes', 'total-adwords']),
-        totalLinks: get(element, ['attributes', 'total-links']),
-        totalResults: get(element, ['attributes', 'total-results']),
+        key: id,
+        keyword: get(element, 'keywordName'),
+        totalAdwords: get(reportData, 'totalAdwords'),
+        totalLinks: get(reportData, 'totalLinks'),
+        totalResults: get(reportData, 'totalResults'),
       };
     });
+
     return dataSource;
   } catch (error) {
     throw error;
