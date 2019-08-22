@@ -10,8 +10,13 @@ import style from './upload.scss';
 
 const { Dragger } = Upload;
 
-const UploadPage = ({ t }) => {
-  const { uploadConfig } = useUpload({ t });
+const UploadPage = ({
+  t,
+  keywordData,
+  setKeywordData,
+}) => {
+  const { uploadConfig } = useUpload({ t, keywordData, setKeywordData });
+
   return (
     <div className={style.container}>
       <h3>{t('draggerTitle')}</h3>

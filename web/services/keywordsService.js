@@ -7,7 +7,7 @@ import {
 
 const RESOURCE = 'upload-file';
 
-export const postKeywords = async ({ keywordsData }) => {
+export const postKeywords = async ({ parsedKeywordsData: keywordsData }) => {
   try {
     const response = await postRequest({
       path: RESOURCE,
