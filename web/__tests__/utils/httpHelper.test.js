@@ -10,6 +10,11 @@ import {
   mockUrlPath,
 } from '/__mocks__/utils/httpHelperMock';
 
+jest.mock('utils/jsonResolver', () => ({
+  formatJson: jest.fn(() => { return { data: { data: [] } };}),
+  formatResponse: jest.fn(),
+}));
+
 describe('generateAuthToken', () => {
   beforeEach(() => {
     auth.getAccessToken = jest.fn(() => mockAccessToken);
@@ -25,7 +30,7 @@ describe('generateAuthToken', () => {
 describe('createUrlPath', () => {
   it('should return api url path properly', () => {
     const result = createUrlPath(mockUrlPath);
-    expect(result).toEqual('v1/upload-file');
+    expect(result).toEqual('v1/keywords');
   });
 });
 
@@ -35,7 +40,7 @@ describe('getRequest', () => {
   });
 
   it('should return all keywords', async () => {
-    const result = await getRequest('upload-file');
+    const result = await getRequest('keywords');
     expect(result).toHaveProperty('data');
   });
 });
@@ -46,8 +51,7 @@ describe('postRequest', () => {
   });
 
   it('should return status success', async () => {
-    const result = await postRequest('upload-file');
-    expect(result).toHaveProperty('statusMsg');
-    expect(result.statusMsg).toEqual('success');
+    const result = await postRequest('keywords');
+    expect(result).toHaveProperty('data');
   });
 });

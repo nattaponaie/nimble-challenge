@@ -18,7 +18,6 @@ describe('getKeywords', () => {
   it('should return all keywords list', async () => {
     const result = await getKeywords();
     const firstKeyword = head(result);
-
     expect(httpHelper.getRequest).toBeCalled();
     expect(firstKeyword.keyword).toEqual('Google');
     expect(firstKeyword.totalAdwords).toBe(3);
