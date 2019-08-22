@@ -18,6 +18,7 @@ import {
 import RecaptchaSubmitButton from '/components/recaptchaSubmitButton';
 import { GATEWAY_RECAPTCHA_SITE_KEY } from '/config';
 import { withNamespaces } from '/i18n';
+import { createUser } from '/services/userService';
 import { register } from '/utils/auth';
 
 import style from './registerForm.scss';
@@ -49,6 +50,7 @@ const RegisterForm = ({ t, redirect, form }) => {
           password,
           recaptchaToken,
         });
+        await createUser();
         Router.replace(`/account/login${redirect ? `?r=${redirect}` : ''}`);
       } catch (e) {
         setAlertMsg(t(e.message));
