@@ -17,6 +17,10 @@ module UserUidAuthenticable
     user_uid_authenticable_private__render unless user_uid_authenticable_private__firebase_token
   end
 
+  def current_user
+    User.find_by(uid: current_uid)
+  end
+
   private
 
   # historically there are team members
