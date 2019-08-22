@@ -10,18 +10,14 @@ import { useKeyword } from '/pages/home/homeHooks';
 import style from './home.scss';
 
 const HomePage = ({ t }) => {
-  const { keywordData, tableColumn, paginationConfig, setKeywordData } = useKeyword({ t });
-  const uploadProps = {
-    keywordData,
-    setKeywordData,
-  };
+  const { keywordData, tableColumn, paginationConfig } = useKeyword({ t });
 
   return (
     <div className={style.container}>
       <div className={style.imgContainer}>
         <img className={style.imgLogo} src={`${ASSET_PREFIX}/static/favicon.png`} alt="logo" />
       </div>
-      <Upload {...uploadProps} />
+      <Upload />
       <Table
         className={style.table}
         columns={tableColumn}

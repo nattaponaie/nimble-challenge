@@ -1,40 +1,30 @@
 import { message } from 'antd';
-import {
-  isEmpty, union,
-} from 'lodash';
+import { isEmpty } from 'lodash';
 import {
   useEffect,
   useState,
 } from 'react';
 
 import { postKeywords } from '/services/keywordsService';
-import { generateKeyword } from '/utils/keywordHelper';
 import { parseCsvFile } from '/utils/papaParse';
 
-export const generateUploadConfig = ({
-  t,
-  keywordData,
-  setKeywordData,
-  parsedKeywordsData,
-  setParsedKeywordsData,
-}) => {
+export const generateUploadConfig = (t) => {
+  let keywordsData = {};
   return {
     name: 'file',
     accept: 'text/csv',
     showUploadList: false,
     async beforeUpload(file) {
       try {
-        parsedKeywordsData = await parseCsvFile(file);
-        setParsedKeywordsData(parsedKeywordsData);
+        keywordsData = await parseCsvFile(file);
       } catch (error) {
         message.error(error);
       }
     },
     async customRequest() {
-      if(isEmpty(parsedKeywordsData)) return;
+      if(isEmpty(keywordsData)) return;
       try {
-        await postKeywords({ parsedKeywordsData });
-        setKeywordData(union(generateKeyword(parsedKeywordsData), keywordData));
+        await postKeywords({ keywordsData });
         message.success(t('uploadSuccess'));
       } catch (error) {
         message.error(error.message);
@@ -43,21 +33,13 @@ export const generateUploadConfig = ({
   };
 };
 
-export const useUpload = ({ t, keywordData, setKeywordData }) => {
+export const useUpload = ({ t }) => {
   const [uploadConfig, setUploadConfig] = useState({});
-  const [parsedKeywordsData, setParsedKeywordsData] = useState({});
   useEffect(() => {
-    setUploadConfig(generateUploadConfig({
-      t,
-      keywordData,
-      setKeywordData,
-      parsedKeywordsData,
-      setParsedKeywordsData,
-    }));
-  }, [keywordData]);
+    setUploadConfig(generateUploadConfig(t));
+  }, []);
 
   return {
     uploadConfig,
-    parsedKeywordsData,
   };
 };
