@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { get } from 'lodash';
+import {
+  formatJson, formatResponse,
+} from 'utils/jsonResolver';
 
 import {
   API_DOMAIN,
@@ -20,25 +22,27 @@ export const generateAuthToken = async () => {
 };
 
 export const createUrlPath = ({
-  version, path,
+  version, path, queryString,
 }) => {
-  const url = `${version}/${path}`;
+  let url = `${version}/${path}`;
+  url += queryString ? `?${queryString}` : '';
   return url;
 };
 
 export const getRequest = async ({
-  version = 'v1', path,
+  version = 'v1', path, queryString,
 }) => new Promise(async (resolve, reject) => {
   const url = createUrlPath({
-    version, path,
+    version, path, queryString,
   });
   instance.get(url, {
     headers: {
       ...(await generateAuthToken()),
     },
   })
-    .then((response) => resolve(get(response, ['data'])))
-    .catch(error => reject(new Error(`GET ${path} ${error.message}`)));
+    .then((response) => resolve(formatJson(formatResponse(response))))
+    .catch(error => reject(error));
+
 });
 
 export const postRequest = async ({
@@ -59,6 +63,6 @@ export const postRequest = async ({
       ...(await generateAuthToken()),
     },
   })
-    .then(response => resolve(get(response, ['data'])))
-    .catch(error => reject(new Error(`POST ${path} ${error.message}`)));
+    .then(response => resolve(formatJson(formatResponse(response))))
+    .catch(error => reject(error));
 });
