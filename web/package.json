@@ -30,7 +30,8 @@
     "react-dom": "^16.8.3",
     "react-google-recaptcha": "^1.0.5",
     "redux-object": "^0.5.10",
-    "webpack": "4.39.2"
+    "webpack": "4.39.2",
+    "json-api-normalizer": "^0.4.16"
   },
   "devDependencies": {
     "@babel/core": "7.1.2",
