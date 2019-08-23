@@ -49,6 +49,7 @@ services:
         yarn install
       ) &&
       rm -f tmp/pids/server.pid &&
+      rake db:migrate &&
       bundle exec rails s -b '0.0.0.0'"
     volumes:
       - "./api:/usr/src/app"
