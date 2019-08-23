@@ -11,6 +11,7 @@ import style from './home.scss';
 
 const HomePage = ({ t }) => {
   const { keywordData, tableColumn, paginationConfig } = useKeyword({ t });
+
   return (
     <div className={style.container}>
       <div className={style.imgContainer}>

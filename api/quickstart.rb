@@ -4,7 +4,7 @@ scheduler = Rufus::Scheduler.new
 
 scheduler.every '1m' do
   p 'Start search keyword that has not been searched'
-  system('rake keyword_data:search')
+  system('rake search_scheduler:search')
   p 'Done search keyword that has not been searched'
 end
 

@@ -49,6 +49,7 @@ export const useKeyword = ({ t }) => {
 
   return {
     keywordData,
+    setKeywordData,
     tableColumn: tableColumn({ t }),
     paginationConfig,
   };

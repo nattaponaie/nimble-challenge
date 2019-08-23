@@ -1,6 +1,6 @@
 export const mockAccessToken = 'adowqjfro2jt92jg2ig2ihith2it2';
 
-export const mockUrlPath = { version: 'v1', path: 'upload-file' };
+export const mockUrlPath = { version: 'v1', path: 'keywords' };
 
 export const mockInstanceGet = () => Promise.resolve({ data: { data: [] } });
 

@@ -1,29 +1,33 @@
 export const mockGetResponse = {
-  data: [
+  keyword: [
     {
       id: 1,
-      attributes: {
-        'keyword': 'Google',
-        'html-code': null,
-        'is-searched': true,
-        'total-adwords': 3,
-        'total-links': 10,
-        'total-results': 12000,
-      },
+      keywordName: 'Google',
+      userId: 1,
+      report: {},
     },
     {
       id: 2,
-      attributes: {
-        'keyword': 'Grab',
-        'html-code': null,
-        'is-searched': true,
-        'total-adwords': 2,
-        'total-links': 8,
-        'total-results': 120000,
-      },
+      keywordName: 'Grab',
+      userId: 1,
+      report: {},
+    },
+  ],
+  report: [
+    {
+      id: 1,
+      totalAdwords: 3,
+      totalLinks: 10,
+      totalResults: 12000,
+    },
+    {
+      id: 2,
+      totalAdwords: 3,
+      totalLinks: 10,
+      totalResults: 1023323,
     },
   ],
 };
 
 export const mockCsvData = ['Keyword', 'Food', 'Taxi', 'Grab', 'Google'];
-export const mockPostResponse = { 'statusMsg': 'success' };
+export const mockPostResponse = { statusMsg: 'success' };
