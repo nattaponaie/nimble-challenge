@@ -26,6 +26,23 @@ If you want to run scheduler job separately then remove scheduler-job from api s
 docker-compose build scheduler-job
 ```
 
+To run the application please run following commands:
+
+```bash
+docker-compose up web
+docker-compose up api
+```
+
+## Database
+
+This project uses PostgreSQL database, in development, the api service will automatically migrate database when running the image. If you do not want it to migrate please remove
+
+```bash
+rake db:migrate &&
+```
+
+from execution command
+
 ## How it works
 
 Web:
