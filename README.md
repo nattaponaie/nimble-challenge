@@ -38,7 +38,7 @@ docker-compose up api
 This project uses PostgreSQL database, in development, the api service will automatically migrate database when running the image. If you do not want it to migrate please remove
 
 ```bash
-rake db:migrate &&
+rake db:migrate
 ```
 
 from execution command
