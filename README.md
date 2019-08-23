@@ -43,6 +43,16 @@ rake db:migrate
 
 from execution command
 
+## Features
+
+This project make it easy to get:
+  - Total Adwords
+  - Total Links
+  - Total Results
+  - HTML Code
+  
+from searching a keyword
+
 ## How it works
 
 Web:
@@ -55,15 +65,23 @@ API:
   - When .csv file is uploaded to API it will be stored to database but not be searched immediately.
   - There is a scheduler-job that running every 1 minute for checking keyword that is not searched yet. In addition, a keyword will be scrapped by using Nokogiri library.
   
-## Features
+## CSV Format
 
-This project make it easy to get:
-  - Total Adwords
-  - Total Links
-  - Total Results
-  - HTML Code
-  
-from searching a keyword
+This project only accept only 2 following CSV format types
+
+```bash
+rails
+ruby
+developer
+job
+```
+
+```bash
+rails,ruby,developer job
+```
+
+In addition, this project still no need to put header column of the keyword.
+You can find an example CSV file in https://raw.githubusercontent.com/nattaponaie/nimble-challenge/master/keywords-example.csv
 
 ## Note
 
